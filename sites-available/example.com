@@ -13,7 +13,7 @@ server {
     ## Filesystem root of the site.
     root /var/www/example.com/docroot;
 
-    include drupal.inc;
+    include drupal;
 }
 
 server {

@@ -61,7 +61,7 @@ location = /index.php {
     ## This enables a fallback for whenever the 'default' upstream fails.
     fastcgi_pass phpfpm;
     ## FastCGI Cache.
-    include fastcgi_cache.inc;
+    include fastcgi_cache;
 
     ## Filefield Upload progress
     ## http://drupal.org/project/filefield_nginx_progress support
