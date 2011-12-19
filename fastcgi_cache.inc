@@ -1,0 +1,27 @@
+### Implementation of the microcache concept as presented here:
+### http://fennb.com/microcaching-speed-your-app-up-250x-with-no-n
+
+## The cache zone referenced.
+fastcgi_cache microcache;
+## The cache key, as specific as possible.
+fastcgi_cache_key $scheme$request_method$host$request_uri;
+
+fastcgi_cache_valid 200 302 1h; # Store pages and redirects for 1 hour.
+fastcgi_cache_valid 301 1d;     # Store permanent redirects for 1 day.
+fastcgi_cache_valid any 1m;     # Store all other requests (errors) for 1 minute.
+
+# Saint mode. If there are errors, display cached content.
+fastcgi_cache_use_stale error timeout invalid_header updating http_500;
+
+## The Cache-Control and Expires headers should be delivered untouched
+## from the upstream to the client.
+fastcgi_ignore_headers Cache-Control Expires;
+## If we client is logged in we bypass the cache.
+fastcgi_cache_bypass $logged_in;
+fastcgi_no_cache $logged_in;
+
+## Add a cache miss/hit status header.
+add_header X-Micro-Cache $upstream_cache_status;
+## To avoid any interaction with the cache control headers we expire
+## everything on this location immediately.
+expires epoch;
