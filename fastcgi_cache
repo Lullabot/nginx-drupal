@@ -2,7 +2,7 @@
 ### http://fennb.com/microcaching-speed-your-app-up-250x-with-no-n
 
 ## The cache zone referenced.
-fastcgi_cache microcache;
+fastcgi_cache default_cache;
 ## The cache key, as specific as possible.
 fastcgi_cache_key $scheme$request_method$host$request_uri;
 
