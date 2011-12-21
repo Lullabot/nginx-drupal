@@ -1,9 +1,5 @@
-# Example site configuration, adapted from
-# https://github.com/perusio/drupal-with-nginx/blob/master/sites-available/example.com.conf
-
-## HTTP server.
 server {
-    listen [::]:80;
+    listen 80;
     server_name example.com;
 
     ## Access and error logs.
@@ -18,7 +14,7 @@ server {
 
 server {
     ## Redirect www.example.com to example.com.
-    listen [::]:80;
+    listen 80;
     server_name www.example.com;
     return 301 $scheme://example.com$request_uri;
 }
