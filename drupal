@@ -20,6 +20,17 @@ location / {
         try_files $uri @rewrite;
     }
 
+    ## Regular private file serving (i.e. handled by Drupal).
+    location ^~ /system/files/ {
+        ## For not signaling a 404 in the error log whenever the
+        ## system/files directory is accessed add the line below.
+        ## Note that the 404 is the intended behavior.
+        log_not_found off;
+        access_log off;
+        expires 30d;
+        try_files $uri @rewrite;
+    }
+
     ## All static files will be served directly.
     location ~* ^.+\.(?:css|js|jpe?g|gif|htc|ico|png|html|xml)$ {
         access_log off;
