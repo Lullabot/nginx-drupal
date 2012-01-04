@@ -71,7 +71,7 @@ location / {
 location = /index.php {
     include fastcgi_params;
     ## This enables a fallback for whenever the 'default' upstream fails.
-    fastcgi_pass phpfpm;
+    fastcgi_pass $php_upstream;
     ## FastCGI Cache.
     include fastcgi_cache;
 

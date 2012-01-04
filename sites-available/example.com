@@ -9,6 +9,14 @@ server {
     ## Filesystem root of the site.
     root /var/www/example.com/docroot;
 
+    # Specify which upstream this site should use. Below, the phpfpm upstream
+    # will be used, which is assumed to be PHP 5.3. If your Drupal site is an
+    # older version and requires PHP 5.2, you can use the php52fpm upstream
+    # instead.
+    set $php_upstream phpfpm;
+    # PHP 5.2
+    #set $php_upstream php52fpm;
+
     include drupal;
 }
 
