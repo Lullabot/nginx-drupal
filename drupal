@@ -99,7 +99,7 @@ location ~ /patches {
 }
 
 ## Disallow access to drush backup directory.
-location ~ /backup {
+location = /backup {
     return 404;
 }
 
